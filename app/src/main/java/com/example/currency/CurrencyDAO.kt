@@ -14,7 +14,7 @@ interface CurrencyDao {
     @Query("SELECT * FROM currency")
     fun getAll(): LiveData<List<CurrencyEntity>>
 
-    @Query("select * from currency order by symbol asc")
+    @Query("select * from currency order by name asc")
     fun getAllSorted(): LiveData<List<CurrencyEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
