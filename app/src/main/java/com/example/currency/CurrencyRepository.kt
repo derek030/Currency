@@ -27,13 +27,11 @@ class CurrencyRepository (application: Application) {
 
     private fun updateData(context: Context) {
         var jsonString = CurrencyUtils.getDataJson(context, "CurrencyList.json")
-        Log.d("testing2", jsonString)
         val gson = Gson()
         val listCurrencyType = object : TypeToken<List<CurrencyItem>>() {}.type
         var currencyItems: List<CurrencyItem> = gson.fromJson(jsonString, listCurrencyType)
         CurrencyUtils.subscribeOnBackground {
             currencyItems.forEachIndexed { index, currencyItem ->
-                Log.d("testing2", "Id: $index currency: $currencyItem")
                 currencyDao.insert(CurrencyEntity(index, currencyItem.name, currencyItem.symbol))
             }
         }

@@ -51,18 +51,16 @@ class CurrencyListFragment : Fragment() {
     private fun initUI() {
         btnLoad.setOnClickListener {
             it.isEnabled = false
-            Log.d("CurrencyListFragment", "false")
-            adapter.updateData(dataList)
             CoroutineScope(Dispatchers.Main).launch {
+                adapter.updateData(dataList)
                 adapter.notifyDataSetChanged()
                 it.isEnabled = true
-                Log.d("CurrencyListFragment", "true")
             }
         }
         btnSort.setOnClickListener {
             it.isEnabled = false
-            adapter.updateData(sortedList)
             CoroutineScope(Dispatchers.Main).launch {
+                adapter.updateData(sortedList)
                 adapter.notifyDataSetChanged()
                 it.isEnabled = true
             }
